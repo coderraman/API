@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice____----_</title>
+    <style>
+      h1{
+        font-family: sans-serif;
+        text-align: center;
+        font-size: 4rem;
+      }
+      #UserData {
+        border: 2px solid red;
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+        border-radius: 8px;
+        font-family: sans-serif;
+        background-color: black;
+      }
+      .head-2 {
+        font-family: sans-serif;
+        background-color: aqua;
+        padding: 8px;
+        margin: 1%;
+        border: 1px solid black;
+        border-style: dotted;
+        border-radius: 8px;
+
+      }
+      .head-3 {
+        background-color: orange;
+        padding: 11px;
+        margin: 1%;
+        border: 1px solid black;
+        border-style: dotted;
+        border-radius: 8px;
+                border-radius: 8px;
+
+      }
+    </style>
+  </head>
+  <body>
+    <h1> Data From API..</h1>
+    <div id="UserData"></div>
+    <!--  -->
+    <script>
+      //   console.log("Hello World");
+
+      //First Question
+      // function foo(){
+      //     var x = 10;
+      //     console.log(x);  //Here Output will be 10 Because we Define upon it !
+      // }
+      // foo();
+      // console.log(x);  // Here Output will be x is not defined!
+
+      //Second Question
+      //   {
+      //     var a = 10;
+      //     let b = 20;
+      //     console.log(a); //Here Output is 10
+      //     console.log(b); //Here Output is 20
+      //   }
+      //   console.log(a); //Here Output is 10
+      //   console.log(b); //Here is not defined error becuase we can access var keyword value out side the block scope but in case of let we can't!
+
+      //Third Question
+      //   console.log(a);
+      //   let a = 10;  // Here will Refrence error this  will say the can't access "a" before intallizing Because of Temporal Dead Zone!
+      //   var a = 10; // Here will Output Undefined due to hoisting!
+      //   const a = 10;    // Here will Refrence error this  will say the can't access "a" before intallizing Because of Temporal Dead Zone!
+
+      //Fourth Question
+      //   var x = 20;
+      //   function foo(){
+      //     console.log(x);
+      //     var x = 10
+      //   }
+      //   foo() // Output will be Undefind!
+
+      //Fifth Question Make First Letter of Each Word Uppercase!
+      //   let Name = "my name is raman";
+      //   let newName = Name.split(" ");
+      //  newName =  newName.map((e) => e.charAt(0).toUpperCase() + e.slice(1));
+      //   let finaName = newName.join(" ");
+      //   console.log(finaName); //OutPut will be My Name Is Raman!
+
+      //Sixth Question Async Await
+
+      let Url = "https://jsonplaceholder.typicode.com/users";
+      let userName = document.getElementById("name");
+      let Eamail = document.getElementById("email");
+      let UserData = document.getElementById("UserData");
+
+      async function fethData() {
+        try {
+          let res = fetch(Url);
+          let data = await res;
+          let finadata = await data.json();
+          console.log(finadata);
+
+          finadata.map((e) => {
+            let h2 = document.createElement("h2");
+            h2.className = "head-2";
+            let h3 = document.createElement("h3");
+            h3.className = "head-3";
+
+            h2.innerHTML = "UserName:"+ " "  + " " +  e.name;
+            h3.innerHTML = "UserEmail:" + " " + " "  + e.email;
+
+            UserData.append(h2);
+            UserData.append(h3);
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      fethData();
+    </script>
+  </body>
+</html>
